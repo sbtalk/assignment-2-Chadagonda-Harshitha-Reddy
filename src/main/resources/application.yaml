@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: emp-service
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3307}/${DATABASE:training}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+  jpa:
+    show_sql: true
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  datadog:
+    metrics:
+      export:
+        apiKey: b3e1026f455fa6c8535cfe57429d38a1
+        uri: https://us5.datadoghq.com/
+        step: 5s
+
+logging:
+  level:
+    root: DEBUG
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
